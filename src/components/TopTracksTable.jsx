@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { TopTrack } from './TopTrack'
 import { Container, Row, Col, Table } from 'react-bootstrap'
+import API_KEY from '../config.json'
 
-
-const apiKey = '23d99d2685c14ac5aea4a0bb283a059d'
 const userName = [
     'konstantysz7',
     'etiennedoerr',
@@ -16,8 +15,8 @@ var method = [
 ]
 var album_limit = 50;
 
-function urlAdress(met = 0, user = 0, limit = album_limit, api = apiKey) {
-    return `https://ws.audioscrobbler.com/2.0/?method=${method[met]}&user=${userName[user]}&api_key=${apiKey}&limit=${album_limit}&format=json`;
+function urlAdress(met = 0, user = 0, limit = album_limit) {
+    return `https://ws.audioscrobbler.com/2.0/?method=${method[met]}&user=${userName[user]}&api_key=${API_KEY}&limit=${album_limit}&format=json`;
 }
 
 
