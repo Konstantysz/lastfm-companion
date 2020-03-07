@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import AlbumGrid from './components/AlbumGrid';
+import TopTrackTable from './components/TopTracksTable';
+import { NaviBar } from './components/NavigationBar';
+import Home from './components/Home';
+import NoMatch from './components/NoMatch';
+
+class App extends Component {
+
+  render() {
+    return (
+      <>
+        <NaviBar />
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/topalbums' component={AlbumGrid} />
+            <Route path='/weeklychart' component={TopTrackTable} />
+            <Route component={NoMatch}></Route>
+            {/* <AlbumGrid albums={this.state.data} /> */}
+            {/* <TopTrackTable tracks={this.state.data} /> */}
+          </Switch>
+        </Router>
+      </>
+    );
+  }
 }
-
-export default App;
+export default App
