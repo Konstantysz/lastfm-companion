@@ -19,8 +19,6 @@ class App extends Component {
             <Route path='/topalbums' component={AlbumGrid} />
             <Route path='/weeklychart' component={TopTrackTable} />
             <Route component={NoMatch}></Route>
-            {/* <AlbumGrid albums={this.state.data} /> */}
-            {/* <TopTrackTable tracks={this.state.data} /> */}
           </Switch>
         </Router>
       </>
