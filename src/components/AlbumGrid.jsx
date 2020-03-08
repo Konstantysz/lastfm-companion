@@ -1,24 +1,6 @@
 import React, { Component } from 'react'
 import { AlbumCard } from './AlbumCard'
 import { Container, Row, Col } from 'react-bootstrap'
-import API_KEY from '../config.json'
-
-const userName = [
-    'konstantysz7',
-    'etiennedoerr',
-    'arsalla',
-    'plnwslwsk'
-]
-var method = [
-    'user.getTopAlbums',
-    'user.getWeeklyTrackChart'
-]
-var album_limit = 50;
-
-function urlAdress(met = 0, user = 0, limit = album_limit) {
-    return `https://ws.audioscrobbler.com/2.0/?method=${method[met]}&user=${userName[user]}&api_key=${API_KEY}&limit=${album_limit}&format=json`;
-}
-
 
 export default class AlbumGrid extends Component {
 
@@ -27,9 +9,11 @@ export default class AlbumGrid extends Component {
     }
 
     componentDidMount() {
-        fetch(urlAdress(0))
-            .then(res => res.json())
-            .then(json => this.setState({ data: json }));
+        this.setState({
+            data: this.props
+        })
+        console.log(this.props)
+        console.log(this.state.data)
     }
 
     albumToAlbumGrid = album => {
@@ -43,10 +27,9 @@ export default class AlbumGrid extends Component {
     };
 
     render() {
-        if (!this.state.data.topalbums) {
+        if (this.state.data.topalbums) {
             return <span>Loading...</span>;
         }
-        // 
 
         return (
             <div>

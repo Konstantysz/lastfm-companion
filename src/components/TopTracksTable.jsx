@@ -1,24 +1,6 @@
 import React, { Component } from 'react'
 import { TopTrack } from './TopTrack'
 import { Container, Row, Col, Table } from 'react-bootstrap'
-import API_KEY from '../config.json'
-
-const userName = [
-    'konstantysz7',
-    'etiennedoerr',
-    'arsalla',
-    'plnwslwsk'
-]
-var method = [
-    'user.getTopAlbums',
-    'user.getWeeklyTrackChart'
-]
-var album_limit = 50;
-
-function urlAdress(met = 0, user = 0, limit = album_limit) {
-    return `https://ws.audioscrobbler.com/2.0/?method=${method[met]}&user=${userName[user]}&api_key=${API_KEY}&limit=${album_limit}&format=json`;
-}
-
 
 export default class TopTrackTable extends Component {
 
@@ -27,9 +9,9 @@ export default class TopTrackTable extends Component {
     }
 
     componentDidMount() {
-        fetch(urlAdress(1))
-            .then(res => res.json())
-            .then(json => this.setState({ data: json }));
+        this.setState({
+            data: this.props
+          })
     }
 
     trackToTrackTable = track => {
@@ -57,7 +39,6 @@ export default class TopTrackTable extends Component {
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        {/* <th>Album</th> */}
                                         <th>Track</th>
                                         <th>Artist</th>
                                         <th>Played</th>
