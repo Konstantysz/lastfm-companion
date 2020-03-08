@@ -25,7 +25,7 @@ export default class TopTrackTable extends Component {
     };
 
     render() {
-        if (!this.state.data.weeklytrackchart) {
+        if (typeof this.state.data.weeklytrackchart=="undefined") {
             return <span>Loading...</span>;
         }
 

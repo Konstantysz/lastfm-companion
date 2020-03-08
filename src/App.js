@@ -13,45 +13,49 @@ const api = {
   base: "https://ws.audioscrobbler.com/2.0/"
 }
 
-const userName = [
-  'konstantysz7',
-  'etiennedoerr',
-  'arsalla',
-  'plnwslwsk'
-]
-
 class App extends React.Component {
 
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     city: undefined,
-  //     country: undefined
-  //   };
-  // }
+  constructor(){
+    super();
+    this.state = {
+      topalbums: undefined,
+      songchart: undefined,
+      error: false
+    };
+  }
 
   // Asynchronously fetching jsons file from the API
-  componentDidMount() {
-    Promise.all([
-      fetch(`${api.base}?method=user.getTopAlbums&user=${userName[0]}&api_key=${API_KEY}&limit=50&format=json`).then(val => val.json()),
-      fetch(`${api.base}?method=user.getWeeklyTrackChart&user=${userName[0]}&api_key=${API_KEY}&limit=50&format=json`).then(val => val.json())
-    ]).then(([topalbumresult, songchartresult]) => {
+  getData = async e => {
+    e.preventDefault()
 
-      // Changes state of App component asigning values from json file
-      this.setState({
-        topalbums: topalbumresult,
-        songchart: songchartresult
+    // const user = e.target.elements.user.value
+    const user = "konstantysz7"
+
+    if(user) {
+
+      Promise.all([
+        fetch(`${api.base}?method=user.getTopAlbums&user=${user}&api_key=${api.key}&limit=50&format=json`).then(val => val.json()),
+        fetch(`${api.base}?method=user.getWeeklyTrackChart&user=${user}&api_key=${api.key}&limit=50&format=json`).then(val => val.json())
+      ]).then(([topalbumresult, songchartresult]) => {
+
+        // Changes state of App component asigning values from json file
+        this.setState({
+          topalbums: topalbumresult,
+          songchart: songchartresult
+        })
+        console.log(this.state.topalbums)
+
+      }).catch((err) => {
+        console.log(err); // Any error cought in fetching with API is going to be displayed at console
       })
 
-    }).catch((err) => {
-      console.log(err); // Any error cought in fetching with API is going to be displayed at console
-    })
+    }
   }
 
   render() {
     return (
       <>
-        <NaviBar />
+        <NaviBar getData={this.getData} error={this.state.error}/>
         <Router>
           <Switch>
             <Route exact path='/' component={Home} />
@@ -60,7 +64,7 @@ class App extends React.Component {
               render={() => 
                 (typeof this.state.topalbums !='undefined') ? (
                   <AlbumGrid topalbums={this.state.topalbums}/>
-                ) : (<></>)}
+                ) : ('')}
             />
             <Route
               path='/weeklychart'

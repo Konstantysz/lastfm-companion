@@ -29,7 +29,7 @@ const Styles = styled.div`
 }
 `;
 
-export const NaviBar = () => (
+export const NaviBar = props => (
     <Styles>
         <Navbar expand='lg'>
             <Navbar.Brand href='/'>
@@ -55,11 +55,24 @@ export const NaviBar = () => (
                         <Nav.Link href='/weeklychart'>Weekly Track Chart</Nav.Link>
                     </Nav.Item>
                 </Nav>
-                <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                <Form inline onSubmit={props.getData}>
+                    <div>{props.error ? error() : ""}</div>
+                    <FormControl 
+                        type="text"  
+                        className="mr-sm-2" 
+                        name="user"
+                        placeholder="Find user..."
+                        />
                     <Button variant="outline-success">Search</Button>
                 </Form>
             </Navbar.Collapse>
         </Navbar>
     </Styles>
-);
+)
+
+function error() {
+    console.log('Error with searchbox occured')
+    return (
+        <div>Error</div>
+    )
+}

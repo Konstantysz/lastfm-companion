@@ -27,7 +27,7 @@ export default class AlbumGrid extends Component {
     };
 
     render() {
-        if (this.state.data.topalbums) {
+        if (typeof this.state.data.topalbums=="undefined") {
             return <span>Loading...</span>;
         }
 
