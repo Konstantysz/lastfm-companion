@@ -12,8 +12,6 @@ export default class AlbumGrid extends Component {
         this.setState({
             data: this.props
         })
-        console.log(this.props)
-        console.log(this.state.data)
     }
 
     albumToAlbumGrid = album => {
@@ -27,21 +25,24 @@ export default class AlbumGrid extends Component {
     };
 
     render() {
-        if (typeof this.state.data.topalbums=="undefined") {
-            return <span>Loading...</span>;
+        if (typeof this.state.data!="undefined") {
+            return (
+                <div>
+                    <br /><br />
+                    <Container fluid={true}>
+                        <Col lg={16}>
+                            <Row className="justify-content-md-center">
+                                {(typeof this.state.data !='undefined') ? (
+                                    this.state.data.topalbums.album.map(this.albumToAlbumGrid)
+                                ) : ('')}
+                            </Row>
+                        </Col>
+                    </Container>
+                </div>
+            )
+        } else {
+            // {console.log(this.state.data)}
+            return <span>Loading...</span>
         }
-
-        return (
-            <div>
-                <br /><br />
-                <Container fluid={true}>
-                    <Col lg={16}>
-                        <Row className="justify-content-md-center">
-                            {this.state.data.topalbums.album.map(this.albumToAlbumGrid)}
-                        </Row>
-                    </Col>
-                </Container>
-            </div>
-        );
     }
 }
