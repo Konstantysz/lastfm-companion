@@ -28,8 +28,8 @@ class App extends React.Component {
   getData = async e => {
     e.preventDefault()
 
-    // const user = e.target.elements.user.value
-    const user = "konstantysz7"
+    const user = e.target.elements.user.value
+    // const user = "konstantysz7"
 
     if(user) {
 
@@ -49,6 +49,8 @@ class App extends React.Component {
         console.log(err); // Any error cought in fetching with API is going to be displayed at console
       })
 
+    } else {
+      this.setState({error: true})
     }
   }
 

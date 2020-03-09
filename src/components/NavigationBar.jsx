@@ -62,8 +62,9 @@ export const NaviBar = props => (
                         className="mr-sm-2" 
                         name="user"
                         placeholder="Find user..."
+                        defaultValue="konstantysz7"
                         />
-                    <Button variant="outline-success">Search</Button>
+                    <Button variant="outline-success" type="submit">Search</Button>
                 </Form>
             </Navbar.Collapse>
         </Navbar>
