@@ -29,7 +29,6 @@ class App extends React.Component {
     e.preventDefault()
 
     const user = e.target.elements.user.value
-    // const user = "konstantysz7"
 
     if(user) {
 
@@ -41,9 +40,8 @@ class App extends React.Component {
         // Changes state of App component asigning values from json file
         this.setState({
           topalbums: topalbumresult,
-          songchart: songchartresult
+          weeklytrackchart: songchartresult
         })
-        console.log(this.state.topalbums)
 
       }).catch((err) => {
         console.log(err); // Any error cought in fetching with API is going to be displayed at console
@@ -70,7 +68,10 @@ class App extends React.Component {
             />
             <Route
               path='/weeklychart'
-              render={() => <TopTrackTable songchart={this.state.songchart}/>}
+              render={() => 
+                (typeof this.state.weeklytrackchart !='undefined') ? (
+                  <TopTrackTable weeklytrackchart={this.state.weeklytrackchart}/>
+                ) : ('')}
             />
             <Route component={NoMatch}></Route>
           </Switch>

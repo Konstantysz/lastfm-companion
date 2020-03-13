@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
-import { Jumbotron } from 'react-bootstrap'
+import { Jumbotron, Container } from 'react-bootstrap'
+import styled from 'styled-components';
+
+const Styles = styled.div`
+.jumbotronn{
+    height: 1000px;
+}
+`;
 
 export default class Home extends Component {
     render() {
         return (
-            <Jumbotron>
-                Welcome to home page
-            </Jumbotron>
+            <Styles>
+                <Jumbotron>
+                    <Container>
+                        Welcome to home page
+                    </Container>
+                </Jumbotron>
+            </Styles>
         );
     }
 }

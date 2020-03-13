@@ -4,14 +4,10 @@ import { Container, Row, Col, Table } from 'react-bootstrap'
 
 export default class TopTrackTable extends Component {
 
-    state = {
-        data: []
-    }
-
-    componentDidMount() {
-        this.setState({
-            data: this.props
-          })
+    constructor(props) {
+        super(props)
+        this.state = {data: this.props.weeklytrackchart}
+        console.log(this.state.data)
     }
 
     trackToTrackTable = track => {
@@ -25,37 +21,35 @@ export default class TopTrackTable extends Component {
     };
 
     render() {
-        if (typeof this.state.data.weeklytrackchart=="undefined") {
-            return <span>Loading...</span>;
+        if (typeof this.state.data!="undefined") {
+            return (
+                <div>
+                    <br /><br />
+                    <Container fluid={false}>
+                        <Col lg={16}>
+                            {(typeof this.state.data !='undefined') ? (
+                                <Row className="justify-content-md-center">
+                                    <Table responsive>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Track</th>
+                                                <th>Artist</th>
+                                                <th>Played</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.state.data.weeklytrackchart.track.map(this.trackToTrackTable)}
+                                        </tbody>
+                                    </Table>
+                                </Row>
+                            ) : ('')}
+                        </Col>
+                    </Container>
+                </div>
+            )
+        } else {
+            return <span>Loading...</span>
         }
-
-        return (
-            <div>
-                <br /><br />
-                <Container fluid={false}>
-                    <Col lg={16}>
-                        <Row className="justify-content-md-center">
-                            <Table responsive>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Track</th>
-                                        <th>Artist</th>
-                                        <th>Played</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.state.data.weeklytrackchart.track.map(this.trackToTrackTable)}
-                                </tbody>
-                            </Table>
-                        </Row>
-                    </Col>
-                </Container>
-            </div>
-        );
     }
 }
-
-
-
-

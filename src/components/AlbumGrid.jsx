@@ -4,14 +4,10 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 export default class AlbumGrid extends Component {
 
-    state = {
-        data: []
-    }
-
-    componentDidMount() {
-        this.setState({
-            data: this.props
-        })
+    constructor(props) {
+        super(props)
+        this.state = {data: this.props.topalbums}
+        console.log(this.state.data)
     }
 
     albumToAlbumGrid = album => {
@@ -31,17 +27,16 @@ export default class AlbumGrid extends Component {
                     <br /><br />
                     <Container fluid={true}>
                         <Col lg={16}>
-                            <Row className="justify-content-md-center">
-                                {(typeof this.state.data !='undefined') ? (
-                                    this.state.data.topalbums.album.map(this.albumToAlbumGrid)
-                                ) : ('')}
-                            </Row>
+                            {(typeof this.state.data !='undefined') ? (
+                                <Row className="justify-content-md-center">
+                                    {this.state.data.topalbums.album.map(this.albumToAlbumGrid)}
+                                </Row>
+                            ) : ('')}
                         </Col>
                     </Container>
                 </div>
             )
         } else {
-            // {console.log(this.state.data)}
             return <span>Loading...</span>
         }
     }
