@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
 .card{
-    width: 18em;
-    height: 25em;
-    margin: 10px;
+    width: 18rem;
+    height: 27rem;
+    margin: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 20px;
+    border-bottom-radius: 20px;
     transition: transform 2.5s, filter 3s ease-in-out;
 }
 
@@ -20,12 +20,14 @@ const Styles = styled.div`
 export const AlbumCard = ({ rank, artist, album_name, cover, playcount }) => {
     return (
         <Styles>
-            <Card body={true} bg={'dark'} text={'light'} border={'light'} >
+            <Card bg={'secondary'} text={'light'}>
                 <Card.Img variant="top" src={cover} />
                 <Card.Body>
-                    <Card.Title>#{rank} {album_name}</Card.Title>
-                    <Card.Subtitle>{artist}</Card.Subtitle>
-                    <Card.Text>Played: {playcount}</Card.Text>
+                <Card.Text>
+                    #{rank} {album_name} - {artist} 
+                    <br/>
+                    Played: {playcount}
+                </Card.Text>
                 </Card.Body>
             </Card>
         </Styles>
