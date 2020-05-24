@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
-import { Jumbotron } from 'react-bootstrap'
+import { Container, Row, Col, Card } from 'react-bootstrap'
+
+import logo from '../img/lastfmlogo.png'
 
 export default class Home extends Component {
     render() {
         return (
-            <Jumbotron>
-                No match
-            </Jumbotron>
+            <Container>
+                <Row>
+                    <Col>
+                        <Card className="mx-auto my-5 text-center py-5">
+                            <Card.Img src={logo} className="w-50 rounded mx-auto d-block"/>
+                            <Card.Body>
+                                No match
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }

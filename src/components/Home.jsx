@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import { Jumbotron, Container } from 'react-bootstrap'
-import styled from 'styled-components';
+import { Container, Row, Col, Card } from 'react-bootstrap'
 
-const Styles = styled.div`
-.jumbotronn{
-    height: 1000px;
-}
-`;
+import logo from '../img/lastfmlogo.png'
 
 export default class Home extends Component {
     render() {
         return (
-            <Styles>
-                <Jumbotron>
-                    <Container>
-                        Welcome to home page
-                    </Container>
-                </Jumbotron>
-            </Styles>
-        );
+            <Container>
+                <Row>
+                    <Col>
+                        <Card className="mx-auto my-5 text-center py-5">
+                            <Card.Img src={logo} className="w-50 rounded mx-auto d-block"/>
+                            <Card.Body>
+                                Welcome to my app that let you see your statistics from last.fm site.
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        )
     }
 }
