@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
 import logo from '../img/lastfmlogo.png'
 
@@ -14,6 +14,7 @@ export default class Home extends Component {
                             <Card.Body>
                                 Welcome to my app that let you see your statistics from last.fm site.
                             </Card.Body>
+                            <Button className="mx-auto my-1 text-center" href="https://www.last.fm/api/auth" variant="danger">Login to Last.fm</Button>
                         </Card>
                     </Col>
                 </Row>
