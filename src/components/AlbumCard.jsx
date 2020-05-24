@@ -6,12 +6,11 @@ export const AlbumCard = ({ rank, artist, album_name, cover, playcount }) => {
         <Card style={{ width: '18rem', height: '27rem', margin: '1rem'}} bg={'secondary'} text={'light'}>
             <Card.Img variant="top" src={cover} />
             <Card.Body>
-            <Card.Text>
-                #{rank} {album_name} - {artist} 
-                <br/>
-                Played: {playcount}
-            </Card.Text>
+                <Card.Title>#{rank} {album_name}</Card.Title>
+                <Card.Subtitle>{artist}</Card.Subtitle>
+                <Card.Text>Played: {playcount}</Card.Text>
             </Card.Body>
         </Card>
     );
 }
+

@@ -4,34 +4,12 @@ import { Container, Row, Col, Table, Card } from 'react-bootstrap'
 
 import logo from '../img/lastfmlogo.png'
 
-const apiKey = '23d99d2685c14ac5aea4a0bb283a059d'
-const userName = [
-    'konstantysz7',
-    'etiennedoerr',
-    'arsalla',
-    'plnwslwsk'
-]
-var method = [
-    'user.getTopAlbums',
-    'user.getWeeklyTrackChart'
-]
-var album_limit = 50;
-
-function urlAdress(met = 0, user = 0, limit = album_limit, api = apiKey) {
-    return `https://ws.audioscrobbler.com/2.0/?method=${method[met]}&user=${userName[user]}&api_key=${apiKey}&limit=${album_limit}&format=json`;
-}
-
-
 export default class TopTrackTable extends Component {
 
-    state = {
-        data: []
-    }
-
-    componentDidMount() {
-        fetch(urlAdress(1))
-            .then(res => res.json())
-            .then(json => this.setState({ data: json }));
+    constructor(props) {
+        super(props)
+        this.state = {data: this.props.weeklytrackchart}
+        console.log(this.state.data)
     }
 
     trackToTrackTable = track => {
@@ -45,7 +23,34 @@ export default class TopTrackTable extends Component {
     };
 
     render() {
-        if (!this.state.data.weeklytrackchart) {
+        if (typeof this.state.data!="undefined") {
+            return (
+                <div>
+                    <br /><br />
+                    <Container fluid={false}>
+                        <Col lg={16}>
+                            {(typeof this.state.data !='undefined') ? (
+                                <Row className="justify-content-md-center">
+                                    <Table responsive>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Track</th>
+                                                <th>Artist</th>
+                                                <th>Played</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.state.data.weeklytrackchart.track.map(this.trackToTrackTable)}
+                                        </tbody>
+                                    </Table>
+                                </Row>
+                            ) : ('')}
+                        </Col>
+                    </Container>
+                </div>
+            )
+        } else {
             return (
                 <Container>
                     <Row>
@@ -61,34 +66,9 @@ export default class TopTrackTable extends Component {
                 </Container>
             )
         }
-
-        return (
-            <div>
-                <br /><br />
-                <Container fluid={false}>
-                    <Col lg={16}>
-                        <Row className="justify-content-md-center">
-                            <Table responsive>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        {/* <th>Album</th> */}
-                                        <th>Track</th>
-                                        <th>Artist</th>
-                                        <th>Played</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.state.data.weeklytrackchart.track.map(this.trackToTrackTable)}
-                                </tbody>
-                            </Table>
-                        </Row>
-                    </Col>
-                </Container>
-            </div>
-        );
     }
 }
+
 
 
 
