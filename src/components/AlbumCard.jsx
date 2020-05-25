@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap'
 
 export const AlbumCard = ({ rank, artist, album_name, cover, playcount }) => {
     return (
-        <Card style={{ width: '18rem', height: '27rem', margin: '1rem'}} bg={'secondary'} text={'light'}>
+        <Card style={{ width: '18rem', height: '27rem', margin: '1rem', padding: '0.25rem'}} bg={'secondary'} text={'light'}>
             <Card.Img variant="top" src={cover} />
             <Card.Body>
                 <Card.Title>#{rank} {album_name}</Card.Title>
