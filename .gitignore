@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 #API KEY File
-src/API_KEY.json
 src/SECRET_KEY.json
+src/API_KEY.json
