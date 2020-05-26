@@ -7,7 +7,7 @@ import { NaviBar } from './components/NavigationBar';
 import Home from './components/Home';
 import NoMatch from './components/NoMatch';
 
-import API_KEY from './config.json'
+import API_KEY from './API_KEY.json'
 
 const api = {
   key: API_KEY,
